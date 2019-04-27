@@ -77,7 +77,7 @@
      
         var videos = $(this).attr("data-name");
         var queryURL = "https://www.googleapis.com/youtube/v3/search?q=" + "theoffice" + "&key=AIzaSyDNYBIL5UBvZd2dGGQzd0ZxfDZzEB8UdS4&part=snippet&type=video";
-        var videoFormat="https://www.youtube.com/watch?v="
+        var videoFormat="https://www.youtube.com/embed/"
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -86,9 +86,8 @@
             for (var i=0; i<response.items.length;i++){
                   var characterDiv = $('<div>');
                   var p = $('<p>').text(response.items[i].snippet.title);
-                  var characterVideo = $("<video>");
-                  characterVideo.attr('video',videoFormat + response.items[i].id.videoId);
-                  characterVideo.attr('type', 'video/mp4');
+                  var characterVideo = $("<iframe>");
+                  characterVideo.attr('src',videoFormat + response.items[i].id.videoId);
                   console.log(characterVideo);
                   characterDiv.append(characterVideo);
                   characterDiv.append(p);
